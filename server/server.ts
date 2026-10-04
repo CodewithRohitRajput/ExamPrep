@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
 import authMiddleware from "./middleware/authMiddleware.js";
-
+import testRoute from "./routes/testRoute.js"
 
 
 dotenv.config()
@@ -21,6 +21,7 @@ app.use(cookieParser())
 await connectDB()
 
 app.use('/login', authRoute)
+app.use('/test', testRoute)
 
 app.use('/me', authMiddleware,(req,res)=>{
     res.json({
