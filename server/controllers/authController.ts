@@ -19,6 +19,9 @@ export const googleLogin = async (req: Request, res: Response) => {
 
 
 export const googleCallback = async (req: Request, res:Response)=>{
+
+    try{
+
     const {code} = req.query;
     if(!code){
         return res.status(400).json()
@@ -54,8 +57,18 @@ export const googleCallback = async (req: Request, res:Response)=>{
         }
     )
 
+    res.cookie("token", token, {
+        httpOnly: true,
+        sameSite : "lax",
+        maxAge : 7 * 24 * 60 * 60 * 1000,
+    })
 
-        
+    return res.status(200).json({
+        success: true, message : "Login Successful"
+    })
 
+    }catch(err){
+        return res.status(503).json({message : `Backend error user cannot login ${err}`})
+    }
 
 }
