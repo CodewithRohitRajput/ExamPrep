@@ -4,6 +4,6 @@ import { getTests,  getTestbyId } from "../controllers/testController.js";
 const router = Router()
 
 router.get('/alltests', getTests)
-router.get('/:onetest', getTestbyId)
+router.get('/:testId', getTestbyId)
 
 export default router;

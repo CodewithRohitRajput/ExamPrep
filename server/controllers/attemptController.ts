@@ -44,7 +44,7 @@ export const startAttempt = async (req : Request, res : Response) => {
 
 export const getAttempt  = async (req :Request, res: Response) => {
     const {attemptId} = req.params;
-    const userId = req.user?.userId,
+    const userId = req.user?.userId
 
     
     const attempt = await Attempt.findOne({_id : attemptId, userId}).populate("testId")
